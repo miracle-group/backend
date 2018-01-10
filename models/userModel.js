@@ -4,9 +4,10 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
   email: {type: String},
   name: {type: String},
-  preferences: [],
+  preferences: [{type: String}],
   times: {type: Number},
-  history: [],
+  history: [{type: String}],
+  validation: {type: String},
   createdt: {type: Date, default: Date.now}
 })
 
