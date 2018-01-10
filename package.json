@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cors": "^2.8.4",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "jest": "^22.0.5",
+    "superagent": "^3.8.2",
+    "supertest": "^3.0.0"
+  }
+}
