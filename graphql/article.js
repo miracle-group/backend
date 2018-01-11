@@ -13,6 +13,7 @@ const articleType = new GraphQLObjectType({
     title: {type: GraphQLString},
     tags: {type: new GraphQLList(GraphQLString)},
     read_time: {type: GraphQLInt},
+    preview: {type: GraphQLString},
     content: {type: GraphQLString}
   }
 });
@@ -25,6 +26,7 @@ const articleInputType = new GraphQLInputObjectType ({
     title: {type: GraphQLString},
     tags: {type: new GraphQLList(GraphQLString)},
     read_time: {type: GraphQLInt},
+    preview: {type: GraphQLString},
     content: {type: GraphQLString}
   }
 });

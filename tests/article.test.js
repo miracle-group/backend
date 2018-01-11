@@ -1,85 +1,83 @@
+const tester = require('graphql-tester').tester;
 const request = require('supertest');
-const app = require('../app')
-const tester = require('graphql-tester').tester
 
-describe('Test the articles path', () => {
-  const self = this
-    beforeAll(() => {
-      self.test = tester({
-        url: 'http://localhost:3001/graphql', contentType: 'application/json'
-      })
-    })
-
-    // Get 200 response
-    it ('should get 200 response', async () => {
-      await self.test(
-        JSON.stringify(
-          {
-            query: `{ articles { _id title tags read_time content isRead } }`
-          }
-        )
-      )
-      .then((res) => {
-        expect(res.status).toBe(200)
-      })
-      .catch((err) => {
-        expect(err).toBe(null)
-      })
-    })
-
-    // Get _id as a string
-    it ('should get _id as a string', async () => {
-      await self.test(
-        JSON.stringify(
-          {
-            query: `{ articles { _id } }`
-          }
-        )
-      )
-      .then((res) => {
-        res.data.articles.forEach((data) => {
-          expect(typeof(data._id)).toBe('string')
-        })
-      })
-      .catch((err) => {
-        expect(err).toBe(null)
-      })
-    })
-
-    // Post 200 response
-    it ('should post 200 response', async () => {
-      await self.test(
-        JSON.stringify(
-          {
-            query: `mutation { addArticle ( articleParam: { title: "berita acara", tags: "berita baru", read_time: 5, content: "lorem ipsum bla bla bla blabla bla", isRead: false } ) { _id title tags read_time content isRead } }`
-          }
-        )
-      )
-      .then((res) => {
-        expect(res.status).toBe(200)
-      })
-      .catch((err) => {
-        expect(err).toBe(null)
-      })
-    })
-
-    // Post title as a string
-    it ('should post title as string', async () => {
-      await self.test(
-        JSON.stringify(
-          {
-            query: `mutation { addArticle ( articleParam: { title: "berita acara", tags: "berita baru", read_time: 5, content: "lorem ipsum bla bla bla blabla bla", isRead: false } ) { _id title tags read_time content isRead } }`
-          }
-        )
-      )
-      .then((res) => {
-        res.data.addArticle.forEach((data) => {
-          expect(typeof(data.title)).toBe('string')
-        })
-      })
-      .catch((err) => {
-        expect(err).toBe(null)
-      })
-    })
-
-})
+describe('Test Articles',() => {
+  const self = this;
+  beforeAll(() => {
+    self.test = tester({
+      url: 'http://localhost:3001/graphql', contentType: 'application/json'
+    });
+  });
+  // Create New Post
+  it('Create New Post Should Return Status Code 200',async () => {
+    await self.test(JSON.stringify({
+      query: `mutation{addArticle(input:{
+        title : "Judul",
+        tags : ["Hello","World"],
+        read_time : 10,
+        content : "Lorem Ipsum"
+      }){
+        _id title tags read_time content
+      }}`
+    })).then(response => {
+      expect(response.status).toBe(200);
+    }).catch(err => {
+      expect(err).toBe(null);
+    });
+  });
+  it('Create New Post Should Return Array',async () => {
+    await self.test(JSON.stringify({
+      query: `mutation{addArticle(input:{
+        title : "Judul",
+        tags : ["Hello","World"],
+        read_time : 10,
+        content : "Lorem Ipsum"
+      }){
+        _id title tags read_time content
+      }}`
+    })).then(response => {
+      expect(Array.isArray(response.data.addArticle)).toBe(true);
+    }).catch(err => {
+      expect(err).toBe(null);
+    });
+  });
+  it('Create New Post Should Return Length More than 0',async () => {
+    await self.test(JSON.stringify({
+      query: `mutation{addArticle(input:{
+        title : "Judul",
+        tags : ["Hello","World"],
+        read_time : 10,
+        content : "Lorem Ipsum"
+      }){
+        _id title tags read_time content
+      }}`
+    })).then(response => {
+      expect(response.data.addArticle.length).toBeGreaterThan(0);
+    }).catch(err => {
+      expect(err).toBe(null);
+    });
+  });
+  // Read Post
+  it('Read Article Should Status Code 200',async () => {
+    await self.test(JSON.stringify({
+      query: `query{article{
+        _id title read_time content tags
+      }}`
+    })).then(response => {
+      expect(response.status).toBe(200);
+    }).catch(err => {
+      expect(err).toBe(null);
+    });
+  });
+  it('Read Article Should Return Array',async () => {
+    await self.test(JSON.stringify({
+      query: `query{article{
+        _id title read_time content tags
+      }}`
+    })).then(response => {
+      expect(Array.isArray(response.data.article)).toBe(true);
+    }).catch(err => {
+      expect(err).toBe(null);
+    });
+  });
+});

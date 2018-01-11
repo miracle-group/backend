@@ -97,6 +97,7 @@ const mutation = new GraphQLObjectType({
           title: 'userInput',
           tags: 'userInput',
           read_time: 'userInput',
+          preview: 'userInput',
           content: 'userInput',
           type: articleInputType
         }
