@@ -31,9 +31,10 @@ describe('Test Articles',() => {
         title : "Judul",
         tags : ["Hello","World"],
         read_time : 10,
+        preview : "Lorem Ipsum",
         content : "Lorem Ipsum"
       }){
-        _id title tags read_time content
+        _id title tags read_time preview content
       }}`
     })).then(response => {
       expect(Array.isArray(response.data.addArticle)).toBe(true);
@@ -47,9 +48,10 @@ describe('Test Articles',() => {
         title : "Judul",
         tags : ["Hello","World"],
         read_time : 10,
+        preview : "Lorem Ipsum",
         content : "Lorem Ipsum"
       }){
-        _id title tags read_time content
+        _id title tags read_time preview content
       }}`
     })).then(response => {
       expect(response.data.addArticle.length).toBeGreaterThan(0);
@@ -61,7 +63,7 @@ describe('Test Articles',() => {
   it('Read Article Should Status Code 200',async () => {
     await self.test(JSON.stringify({
       query: `query{article{
-        _id title read_time content tags
+        _id title read_time preview content tags
       }}`
     })).then(response => {
       expect(response.status).toBe(200);
@@ -72,7 +74,7 @@ describe('Test Articles',() => {
   it('Read Article Should Return Array',async () => {
     await self.test(JSON.stringify({
       query: `query{article{
-        _id title read_time content tags
+        _id title read_time preview content tags
       }}`
     })).then(response => {
       expect(Array.isArray(response.data.article)).toBe(true);
