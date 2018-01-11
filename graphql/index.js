@@ -2,7 +2,9 @@ const {GraphQLObjectType, GraphQLList, GraphQLSchema} = require('graphql');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 const User = require('../models/userModel');
+const Article = require('../models/articleModel');
 const {userType, userInputType, mongoRespType} = require('./user');
+const {articleType, articleInputType} = require('./article');
 
 const query = new GraphQLObjectType({
   name : 'Query',
@@ -11,6 +13,12 @@ const query = new GraphQLObjectType({
       type : new GraphQLList(userType),
       resolve : async () => {
         return await User.find();
+      }
+    },
+    article : {
+      type : new GraphQLList(articleType),
+      resolve : async () => {
+        return await Article.find();
       }
     }
   }
@@ -82,7 +90,22 @@ const mutation = new GraphQLObjectType({
         return remove.result;
       }
     },
-    writeArticle : {
+    addArticle : {
+      type : new GraphQLList(articleType),
+      args : {
+        input : {
+          title: 'userInput',
+          tags: 'userInput',
+          read_time: 'userInput',
+          content: 'userInput',
+          type: articleInputType
+        }
+      },
+      resolve : async (root,args) => {
+        const {input} = args;
+        await Article.create(input);
+        return await Article.find()
+      }
     }
   }
 });

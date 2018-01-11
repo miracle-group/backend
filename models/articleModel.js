@@ -1,15 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let articleSchema = new Schema(
-  {
-    title: String,
-    tags: [String],
-    read_time: Number,
-    content: String,
-    read: Boolean
-  }
-)
+const articleSchema = new Schema({
+  title: String,
+  tags: Array,
+  read_time: Number,
+  content: String
+});
 
-let Article = mongoose.model('Article',articleSchema)
+const Article = mongoose.model('Article',articleSchema);
+
 module.exports = Article
