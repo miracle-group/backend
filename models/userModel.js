@@ -1,11 +1,14 @@
-const {DB_PATH} = require('../secrets.config')
-      mongoose  = require('mongoose').connect(DB_PATH);
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const userSchema = mongoose.Schema({
-  username: String,
-  password: String
+const userSchema = new Schema({
+  email: {type: String},
+  name: {type: String},
+  preferences: [],
+  times: {type: Number},
+  history: [],
+  createdt: {type: Date, default: Date.now}
 })
 
-const userModel = mongoose.model('user', userSchema)
-
-module.exports = userModel
+const User = mongoose.model('User', userSchema)
+module.exports = User

@@ -7,6 +7,22 @@ const express    = require('express')
 
 const app = express()
 
+// GraphQL
+const graphqlHTTP = require('express-graphql')
+let appSchema = require('./routes/graphql')
+app.use('/graphql', graphqlHTTP(
+  {
+    schema: appSchema,
+    graphiql: true
+  }
+))
+
+// Mongoose Connect
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://admin:admin@cluster0-shard-00-00-lxcs3.mongodb.net:27017,cluster0-shard-00-01-lxcs3.mongodb.net:27017,cluster0-shard-00-02-lxcs3.mongodb.net:27017/mongoose_repod?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', {
+  useMongoClient: true
+})
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
