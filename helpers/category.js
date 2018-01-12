@@ -21,7 +21,7 @@ const getCategory = function (req,res) {
       });
       res.send(Preferences)
     }
-  });
+  })
 }
 
 module.exports = {

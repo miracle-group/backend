@@ -9,8 +9,7 @@ const express = require('express')
       graphql    = require('express-graphql')
       ObjectId   = require('mongoose').Types.ObjectId
       cors       = require('cors')
-      rssScrape  = require('./routes/rssScrape')
-      
+
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -39,7 +38,6 @@ app.use(cors())
 
 app.use('/', index)
 app.use('/users', users)
-app.use('/rss_scrape', rssScrape)
 
 const userType = new GraphQLObjectType({
   name: 'User',
