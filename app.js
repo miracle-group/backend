@@ -9,6 +9,7 @@ const express = require('express')
       graphql    = require('express-graphql')
       ObjectId   = require('mongoose').Types.ObjectId
       cors       = require('cors')
+      rssScrape  = require('./routes/rssScrape')
       
 const {
   GraphQLSchema,
@@ -18,6 +19,8 @@ const {
   GraphQLInt,
   GraphQLInputObjectType
 } = require('graphql')
+
+
 const app = express()
 
 mongoose.connection.openUri('mongodb://hary:hary@cluster0-shard-00-00-dvvn1.mongodb.net:27017,cluster0-shard-00-01-dvvn1.mongodb.net:27017,cluster0-shard-00-02-dvvn1.mongodb.net:27017/repod?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', (err,db) => {
@@ -36,6 +39,7 @@ app.use(cors())
 
 app.use('/', index)
 app.use('/users', users)
+app.use('/rss_scrape', rssScrape)
 
 const userType = new GraphQLObjectType({
   name: 'User',
