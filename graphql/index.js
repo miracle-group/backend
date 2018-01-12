@@ -40,7 +40,6 @@ const mutation = new GraphQLObjectType({
         const checkUser = await User.findOne({
           validation : input.validation
         });
-        console.log(checkUser);
         if(!checkUser){
           await User.create(input);
         }
