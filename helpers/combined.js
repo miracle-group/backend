@@ -15,12 +15,19 @@ const getCombined = (req, res) => {
       })
     })
     scrapeList.forEach((eachList, i) => {
-      if (metadata[i]) {
-        if (metadata[i].guid == eachList.postID) {
-          console.log('masuk sini');
-          metadata[i]['postID'] = eachList.postID
+      // if (metadata[i]) {
+      //   metadata.forEach((meta) => {
+      //     if (meta.guid === eachList.postID) {
+      //       console.log(meta.guid);
+      //       meta['postID'] = eachList.postID
+      //     }
+      //   })
+      // }
+      metadata.forEach((meta) => {
+        if (meta.guid === eachList.postID) {
+          meta['postID'] = eachList.postID
         }
-      }
+      })
     })
     res.send(metadata)
   })
