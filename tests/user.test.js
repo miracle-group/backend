@@ -1,4 +1,4 @@
-const tester = require('graphql-tester').tester;
+const {tester} = require('graphql-tester');
 const request = require('supertest');
 
 let userId = '';
@@ -7,7 +7,7 @@ describe('Test Users',() => {
   const self = this;
   beforeAll(() => {
     self.test = tester({
-      url: 'http://localhost:3001/graphql', contentType: 'application/json'
+      url: 'http://35.198.201.189:8000/graphql', contentType: 'application/json'
     });
   });
   // Create User

@@ -42,7 +42,12 @@ const mutation = new GraphQLObjectType({
       },
       resolve: async (root,args) => {
         const {input} = args;
-        await User.create(input);
+        const checkUser = await User.findOne({
+          validation : input.validation
+        });
+        if(!checkUser){
+          await User.create(input);
+        }
         return await User.find();
       }
     },
