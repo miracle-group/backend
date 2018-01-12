@@ -4,6 +4,8 @@ const express    = require('express')
       cors       = require('cors')
       index      = require('./routes/index')
       users      = require('./routes/users')
+      rssScrape  = require('./routes/rssScrape')
+
 
 const app = express()
 
@@ -30,6 +32,7 @@ app.use(cors())
 
 // app.use('/', index)
 app.use('/users', users)
+app.use('/rss_scrape', rssScrape)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
