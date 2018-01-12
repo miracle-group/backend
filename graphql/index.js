@@ -28,15 +28,10 @@ const mutation = new GraphQLObjectType({
   name : 'Mutation',
   fields : {
     userAdd : {
-      type : new GraphQLList(userType),
+      type : userType,
       args : {
         input: {
           name : 'userInput',
-          email : 'userInput',
-          times : 'userInput',
-          preferences : 'userInput',
-          validation : 'userInput',
-          history : 'userInput',
           type : userInputType
         }
       },
@@ -45,22 +40,20 @@ const mutation = new GraphQLObjectType({
         const checkUser = await User.findOne({
           validation : input.validation
         });
+        console.log(checkUser);
         if(!checkUser){
           await User.create(input);
         }
-        return await User.find();
+        return await User.findOne({
+          validation : input.validation
+        });
       }
     },
     updateUser : {
       type : mongoRespType,
       args : {
         input : {
-          _id : 'userInput',
           name : 'userInput',
-          email : 'userInput',
-          times : 'userInput',
-          history: 'userInput',
-          preferences : 'userInput',
           type : userInputType
         }
       },
@@ -83,7 +76,7 @@ const mutation = new GraphQLObjectType({
       type : mongoRespType,
       args : {
         input : {
-          _id : 'userInput',
+          name : 'userInput',
           type : userInputType
         }
       },
@@ -99,12 +92,8 @@ const mutation = new GraphQLObjectType({
       type : new GraphQLList(articleType),
       args : {
         input : {
-          title: 'userInput',
-          tags: 'userInput',
-          read_time: 'userInput',
-          preview: 'userInput',
-          content: 'userInput',
-          type: articleInputType
+          name : 'userInput',
+          type : articleInputType
         }
       },
       resolve : async (root,args) => {

@@ -7,7 +7,7 @@ describe('Test Users',() => {
   const self = this;
   beforeAll(() => {
     self.test = tester({
-      url: 'http://35.198.201.189:8000/graphql', contentType: 'application/json'
+      url: 'http://localhost:3001/graphql', contentType: 'application/json'
     });
   });
   // Create User
@@ -16,15 +16,12 @@ describe('Test Users',() => {
       query: `mutation{userAdd(input:{
         email : "yono@gmail.com",
         name : "yono",
-        validation : "HASGDAY231623GASDSA",
-        times : 10,
-        preferences : ["Makan","Minum"],
-        history : ["OK","ERROR"]
+        validation : "HASGDAY231623GASDSA"
       }){
         _id email name validation times preferences history
       }}`
     })).then(response => {
-      userId = response.data.userAdd[0]._id;
+      userId = response.data.userAdd._id;
       expect(response.status).toBe(200);
     }).catch(err => {
       expect(err).toBe(null);

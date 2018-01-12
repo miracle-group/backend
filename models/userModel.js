@@ -5,7 +5,10 @@ const userSchema = new Schema({
   email: String,
   name: String,
   preferences: Array,
-  times: Number,
+  times: {
+    type : Number,
+    default : 0
+  },
   validation : String,
   history: Array,
   createdAt: {
