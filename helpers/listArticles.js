@@ -1,42 +1,46 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-request('https://medium.com/topic/digital-design', function (error, response, html) {
-  let metadatas = []
-  if (!error && response.statusCode == 200) {
-    let result = []
-    var $ = cheerio.load(html);
-    $('.u-block.u-backgroundSizeCover.u-backgroundOriginBorderBox').each(function(i, element){
-      let temp = element.attribs.style
-      let split = temp.split(';').slice(0,1).join('')
-      let spasi = split.split(' ').join('')
-      let spasi2 = spasi.split(':').pop().substr(2, spasi.split(':').pop().length-4)
-      var url = element.attribs.href
-      var label = element.attribs['aria-label']
-      var gambar = spasi2
-      let metadata = {
-        id: i+1,
-        url : url,
-        photo: gambar,
-        title: label
-      }
-      metadatas.push(metadata)
-    })
+function getListMedium () {
+  request('https://medium.com/topic/digital-design', function (error, response, html) {
+    let metadatas = []
+    if (!error && response.statusCode == 200) {
+      let result = []
+      var $ = cheerio.load(html);
+      $('.u-block.u-backgroundSizeCover.u-backgroundOriginBorderBox').each(function(i, element){
+        let temp = element.attribs.style
+        let split = temp.split(';').slice(0,1).join('')
+        let spasi = split.split(' ').join('')
+        let spasi2 = spasi.split(':').pop().substr(2, spasi.split(':').pop().length-4)
+        var url = element.attribs.href
+        var label = element.attribs['aria-label']
+        var gambar = spasi2
+        let metadata = {
+          id: i+1,
+          url : url,
+          photo: gambar,
+          title: label
+        }
+        metadatas.push(metadata)
+      })
 
-    $('.u-flex0.u-sizeFullWidth').each((j, content) => {
-      let description = String(content.next.children[0].children[0].data)
-      if(metadatas[j]){
-        metadatas[j]['description'] = description
-      }
-    })
+      $('.u-flex0.u-sizeFullWidth').each((j, content) => {
+        let description = String(content.next.children[0].children[0].data)
+        if(metadatas[j]){
+          metadatas[j]['description'] = description
+        }
+      })
 
-    $('.u-flex1.u-noWrapWithEllipsis').each(function(k, content){
-      let times = content.children[0].children[0].parent.next.children[0].next.next.attribs.title
-      let hasil = times.split(' ').shift()
-      if(metadatas[k]) {
-        metadatas[k]['times'] = hasil
-      }
-    })
-    console.log(metadatas);
-  }
-});
+      $('.u-flex1.u-noWrapWithEllipsis').each(function(k, content){
+        let times = content.children[0].children[0].parent.next.children[0].next.next.attribs.title
+        let hasil = times.split(' ').shift()
+        if(metadatas[k]) {
+          metadatas[k]['times'] = hasil
+        }
+      })
+      console.log(metadatas);
+    }
+  });
+}
+
+module.exports = getListMedium
