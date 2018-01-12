@@ -2,7 +2,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 
-function getCategory () {
+const getCategory = function (req,res) {
   request('https://medium.com/topics', function (error, response, html) {
     if (!error && response.statusCode == 200) {
       var $ = cheerio.load(html);
@@ -24,4 +24,6 @@ function getCategory () {
   });
 }
 
-module.exports = getCategory
+module.exports = {
+  getCategory
+}

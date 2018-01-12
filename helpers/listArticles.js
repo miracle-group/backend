@@ -1,8 +1,8 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-function getListMedium () {
-  request('https://medium.com/topic/digital-design', function (error, response, html) {
+ const getListMedium = function (req,res) {
+  request('https://medium.com/topic/technology', function (error, response, html) {
     let metadatas = []
     if (!error && response.statusCode == 200) {
       let result = []
@@ -43,4 +43,6 @@ function getListMedium () {
   });
 }
 
-module.exports = getListMedium
+module.exports = {
+  getListMedium
+}
