@@ -34,8 +34,10 @@ var cheerio = require('cheerio');
       $('.u-flex1.u-noWrapWithEllipsis').each(function(k, content){
         let times = content.children[0].children[0].parent.next.children[0].next.next.attribs.title
         let hasil = times.split(' ').shift()
+        let number = Number(hasil)
+        console.log(typeof(number));
         if(metadatas[k]) {
-          metadatas[k]['times'] = hasil
+          metadatas[k]['times'] = number
         }
       })
 
@@ -45,7 +47,7 @@ var cheerio = require('cheerio');
           metadatas[m]['postID'] = postId
         }
       })
-      
+
       res.send(metadatas);
     }
   });
