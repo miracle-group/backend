@@ -5,6 +5,7 @@ const articleSchema = new Schema({
   title: String,
   tags: Array,
   read_time: Number,
+  preview : String,
   content: String
 });
 

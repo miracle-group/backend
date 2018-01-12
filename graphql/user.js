@@ -7,7 +7,7 @@ const {
 } = require('graphql');
 
 const userType = new GraphQLObjectType({
-  name: 'User',
+  name: 'Users',
   fields: {
     _id: {type: GraphQLString},
     email: {type: GraphQLString},
@@ -41,7 +41,6 @@ const userInputType = new GraphQLInputObjectType ({
     history: {type: new GraphQLList(GraphQLString)}
   }
 });
-
 
 module.exports = {
   userType,
