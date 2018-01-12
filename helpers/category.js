@@ -19,7 +19,7 @@ const getCategory = function (req,res) {
         };
         Preferences.push(metadata)
       });
-      console.log(Preferences);
+      res.send(Preferences)
     }
   });
 }

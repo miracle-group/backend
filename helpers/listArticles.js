@@ -38,7 +38,15 @@ var cheerio = require('cheerio');
           metadatas[k]['times'] = hasil
         }
       })
-      console.log(metadatas);
+
+      $('.u-borderBox.u-flexColumn.uiScale.uiScale-ui--small.uiScale-caption--small').each((m, content) => {
+        let postId = content.parent.parent.attribs['data-post-id']
+        if(metadatas[m]) {
+          metadatas[m]['postID'] = postId
+        }
+      })
+      
+      res.send(metadatas);
     }
   });
 }

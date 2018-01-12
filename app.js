@@ -8,7 +8,7 @@ const express = require('express')
       mongoose   = require('mongoose')
       graphql    = require('express-graphql')
       ObjectId   = require('mongoose').Types.ObjectId
-
+      cors       = require('cors')
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -188,8 +188,9 @@ app.use(function(err, req, res, next) {
 
   // render the error page
 
+  console.log(err);
   res.status(err.status || 500)
-  res.render('error')
+  // res.render('error')
 })
 
 
