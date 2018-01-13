@@ -69,12 +69,14 @@ const mutation = new GraphQLObjectType({
           history: input.history ? input.history : user.history,
           preferences: input.preferences ? input.preferences : user.preferences,
         });
-        createConjuction({
-          api : input.api,
-          userId : input._id,
-          times : input.times,
-          preferences : input.preferences
-        });
+        if(input.preferences){
+          createConjuction({
+            api : input.api,
+            userId : input._id,
+            times : input.times,
+            preferences : input.preferences
+          });
+        }
         return update;
       }
     },

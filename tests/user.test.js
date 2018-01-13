@@ -59,7 +59,6 @@ describe('Test Users',() => {
         n nModified ok
       }}`
     })).then(response => {
-      console.log(response);
       expect(response.data.updateUser.n).toBe(1);
     }).catch(err => {
       expect(err).toBe(null);
