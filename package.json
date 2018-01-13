@@ -9,13 +9,16 @@
   },
   "dependencies": {
     "body-parser": "~1.18.2",
+    "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
     "graphql": "^0.12.3",
     "graphql-tester": "^0.0.5",
     "mongoose": "^4.13.9",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "parse-rss": "^1.0.3",
+    "reading-time": "^1.1.0"
   },
   "devDependencies": {
     "jest": "^22.0.5",

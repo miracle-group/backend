@@ -1,2 +1,4 @@
 node_modules
 *.config.js
+sandbox.js
+datajson.json
