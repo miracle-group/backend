@@ -59,6 +59,7 @@ describe('Test Users',() => {
         n nModified ok
       }}`
     })).then(response => {
+      console.log(response);
       expect(response.data.updateUser.n).toBe(1);
     }).catch(err => {
       expect(err).toBe(null);
@@ -79,7 +80,7 @@ describe('Test Users',() => {
     });
   });
   // Delete User
-  it('Create New User Should Return Status OK',async () => {
+  it('Delete New User Should Return Status OK',async () => {
     await self.test(JSON.stringify({
       query: `mutation{deleteUser(input:{
         _id : "${userId}"
