@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const Article = require('../models/articleModel');
 const {userType, userInputType, mongoRespType} = require('./user');
 const {articleType, articleInputType} = require('./article');
+const {createConjuction} = require('../helpers/scrapping');
 
 const query = new GraphQLObjectType({
   name : 'Query',
@@ -67,6 +68,12 @@ const mutation = new GraphQLObjectType({
           times: input.times ? input.times : user.times,
           history: input.history ? input.history : user.history,
           preferences: input.preferences ? input.preferences : user.preferences,
+        });
+        createConjuction({
+          api : input.api,
+          userId : input._id,
+          times : input.times,
+          preferences : input.preferences
         });
         return update;
       }
