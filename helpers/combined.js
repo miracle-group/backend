@@ -9,6 +9,9 @@ const getCombined = async (req, res, next) => {
     let metadata = []
     scrapeContent.forEach((eachCategoryLoop) => {
       eachCategoryLoop.forEach((eachContent) => {
+        let hasil = eachContent.read_time.split(' ').shift()
+        let number = Number(hasil)
+
         let obj = {
           guid: eachContent.guid,
           link: eachContent.link,
@@ -17,7 +20,7 @@ const getCombined = async (req, res, next) => {
           title: eachContent.title,
           content: eachContent.content,
           categories: eachContent.categories,
-          read_time: eachContent.read_time
+          read_time: number
         }
         metadataContent.push(obj)
       })
@@ -26,6 +29,7 @@ const getCombined = async (req, res, next) => {
       eachList.forEach((perList) => {
         // console.log(metadataContent.length);
         metadataContent.forEach((meta,i) => {
+          // console.log(meta);
           if(i > 2) {
             if (meta.guid === perList.postID) {
               let objList = {
@@ -37,7 +41,7 @@ const getCombined = async (req, res, next) => {
                 title: meta.title,
                 content: meta.content,
                 categories: meta.categories,
-                read_time: meta.times
+                read_time: meta.read_time
               }
               metadata.push(objList)
             }
