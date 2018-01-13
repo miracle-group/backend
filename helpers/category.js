@@ -14,7 +14,7 @@ const getCategory = function (req,res) {
 
         var metadata = {
           url : topic_url,
-          name : topic_name
+          name : topic_name.toLowerCase()
 
         };
         Preferences.push(metadata)
