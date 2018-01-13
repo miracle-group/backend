@@ -13,7 +13,9 @@ const getCategory = (req, res) => {
         var Preferences = []
         $('.link.link--noUnderline.u-baseColor--link.u-flex1.u-uiDisplayBold.u-fontSize20').each((i, element) => {
           var topic_name = element.attribs.href
-          dataArr.push(topic_name.toLowerCase())
+          var dummy = topic_name.split('/')
+          // console.log(dummy[dummy.length-1]);
+          dataArr.push(dummy[dummy.length-1].toLowerCase())
         });
         resolve(dataArr)
       }
@@ -26,6 +28,7 @@ let getContent = (req, res) => {
     getCategory().then((dataCategory) => {
       let bigData = []
       dataCategory.forEach( async (newData, i) => {
+        console.log('&&&&&&&&&&&&&&&&&&&&&&&&',newData);
         await parser(`https://medium.com/feed/topic/${newData}`, (err, rss) => {
           if(err){
             console.log(err);

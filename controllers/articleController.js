@@ -16,22 +16,27 @@ let findAllArticles = (req, res) => {
 // Post article
 let addArticle = (req, res) => {
   return new Promise((resolve, reject) => {
-    let newArticle = Article(
-      {
-        title: req.title,
-        tags: req.tags,
-        read_time: req.read_time,
-        content: req.content,
-        isRead: req.isRead
-      }
-    )
-    newArticle.save().then((dataArticles) => {
-      resolve(dataArticles)
-    }).catch((err) => {
-      reject(err)
+    req.metadata.forEach((meta) => {
+      let newArticle = new Article ({
+        postID: meta.postID,
+        thumbnail: `http://${meta.photo}`,
+        link: meta.link,
+        createdAt: meta.createdAt,
+        author: meta.author,
+        title: meta.title,
+        content: meta.content,
+        categories: meta.categories,
+        read_time: meta.times
+      })
+      newArticle.save().then((dataArticles) => {
+        resolve(dataArticles)
+      }).catch((err) => {
+        reject(err)
+      })
     })
   })
 }
+
 
 module.exports = {
   findAllArticles,

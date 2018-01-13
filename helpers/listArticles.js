@@ -27,7 +27,7 @@ const getListMedium = (req,res) => {
      data.forEach( async (dataCategory) => {
        let url = dataCategory
        await request(url, (error, response, html) => {
-         console.log(url);
+        //  console.log(url);
           let metadatas = []
           if (!error && response.statusCode == 200) {
             let result = []

@@ -1,7 +1,7 @@
 const listArticles = require('./listArticles')
 const rssScrape = require('./rssCrape')
 
-const getCombined = async (req, res) => {
+const getCombined = async (req, res, next) => {
   Promise.all([rssScrape.getContent(), listArticles.getListMedium()]).then((data) => {
     let scrapeContent = data[0]
     let scrapeList = data[1]
@@ -25,25 +25,28 @@ const getCombined = async (req, res) => {
     scrapeList.forEach((eachList, i) => {
       eachList.forEach((perList) => {
         // console.log(metadataContent.length);
-        metadataContent.forEach((meta) => {
-          if (meta.guid === perList.postID) {
-            let objList = {
-              postID: perList.postID,
-              thumbnail: `http://${perList.photo}`,
-              link: meta.link,
-              createdAt: meta.createdAt,
-              author: meta.author,
-              title: meta.title,
-              content: meta.content,
-              categories: meta.categories,
-              read_time: perList.times
+        metadataContent.forEach((meta,i) => {
+          if(i > 2) {
+            if (meta.guid === perList.postID) {
+              let objList = {
+                postID: perList.postID,
+                thumbnail: `http://${perList.photo}`,
+                link: meta.link,
+                createdAt: meta.createdAt,
+                author: meta.author,
+                title: meta.title,
+                content: meta.content,
+                categories: meta.categories,
+                read_time: meta.times
+              }
+              metadata.push(objList)
             }
-            metadata.push(objList)
           }
         })
       })
     })
-    // res.send(metadata)
+    req.metadata = metadata
+    next()
   })
 }
 
