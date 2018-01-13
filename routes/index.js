@@ -1,12 +1,15 @@
-const router = require('express').Router()
+const router = require('express').Router();
 
-const category = require('../helpers/category')
-const articles = require('../helpers/listArticles')
+const controlCategory = require('../controllers/controlCategory');
 
-router.get('/', function (req,res) {
-  res.send('OKE')
-})
-router.get('/category', category.getCategory)
-router.get('/articles', articles.getListMedium)
+router.get('/',(req,res) => {
+  res.send('API Ready');
+});
+
+// List All Categories
+router.get('/category/all',controlCategory.allCategory);
+
+// List Articles Based on Category
+router.get('/category/:category',controlCategory.byCategory);
 
 module.exports = router;
