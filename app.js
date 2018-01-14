@@ -4,12 +4,10 @@ const app = require('express')()
       bodyParser      = require('body-parser')
       User            = require('./models/userModel')
       index           = require('./routes/index')
-      users           = require('./routes/users')
       mongoose        = require('mongoose')
       graphql         = require('express-graphql')
       ObjectId        = require('mongoose').Types.ObjectId
       cors            = require('cors')
-      rssScrape       = require('./routes/rssScrape')
 const {GraphQLSchema} = require('graphql');
 
 const {query, mutation} = require('./graphql');

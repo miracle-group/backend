@@ -16,6 +16,20 @@ const query = new GraphQLObjectType({
         return await User.find();
       }
     },
+    user : {
+      type : userType,
+      args : {
+        input: {
+          name : 'userInput',
+          type : userInputType
+        }
+      },
+      resolve : async (root,args) => {
+        return await User.findOne({
+          _id : args.input._id
+        });
+      }
+    },
     article : {
       type : new GraphQLList(articleType),
       resolve : async () => {
