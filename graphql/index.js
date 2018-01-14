@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const Article = require('../models/articleModel');
 const {userType, userInputType, mongoRespType} = require('./user');
 const {articleType, articleInputType} = require('./article');
+const {createConjuction} = require('../helpers/scrapping');
 
 const query = new GraphQLObjectType({
   name : 'Query',
@@ -13,6 +14,20 @@ const query = new GraphQLObjectType({
       type : new GraphQLList(userType),
       resolve : async () => {
         return await User.find();
+      }
+    },
+    user : {
+      type : userType,
+      args : {
+        input: {
+          name : 'userInput',
+          type : userInputType
+        }
+      },
+      resolve : async (root,args) => {
+        return await User.findOne({
+          _id : args.input._id
+        });
       }
     },
     article : {
@@ -40,7 +55,6 @@ const mutation = new GraphQLObjectType({
         const checkUser = await User.findOne({
           validation : input.validation
         });
-        console.log(checkUser);
         if(!checkUser){
           await User.create(input);
         }
@@ -69,6 +83,14 @@ const mutation = new GraphQLObjectType({
           history: input.history ? input.history : user.history,
           preferences: input.preferences ? input.preferences : user.preferences,
         });
+        if(input.preferences){
+          createConjuction({
+            api : input.api,
+            userId : input._id,
+            times : input.times,
+            preferences : input.preferences
+          });
+        }
         return update;
       }
     },

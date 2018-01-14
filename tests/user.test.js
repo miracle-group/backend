@@ -79,7 +79,7 @@ describe('Test Users',() => {
     });
   });
   // Delete User
-  it('Create New User Should Return Status OK',async () => {
+  it('Delete New User Should Return Status OK',async () => {
     await self.test(JSON.stringify({
       query: `mutation{deleteUser(input:{
         _id : "${userId}"

@@ -11,6 +11,7 @@ const articleType = new GraphQLObjectType({
   fields: {
     _id: {type: GraphQLString},
     title: {type: GraphQLString},
+    thumbnail : {type: GraphQLString},
     tags: {type: new GraphQLList(GraphQLString)},
     read_time: {type: GraphQLInt},
     preview: {type: GraphQLString},
@@ -24,6 +25,7 @@ const articleInputType = new GraphQLInputObjectType ({
   fields: {
     _id: {type: GraphQLString},
     title: {type: GraphQLString},
+    thumbnail : {type: GraphQLString},
     tags: {type: new GraphQLList(GraphQLString)},
     read_time: {type: GraphQLInt},
     preview: {type: GraphQLString},
