@@ -9,18 +9,8 @@ const createConjuction = async (object,io) => {
     let totalDuration = 0;
     const {times} = object;
     const {userId} = object;
-    const {deleted} = object;
     const preferences = object.preferences.map(category => {
       return category.replace(/\W+/g,'-');
-    });
-    // Hapus
-    deleted.forEach(category => {
-      Conjuction.deleteMany({
-        userId : ObjectId(userId),
-        category : category
-      }).then(response => {
-        console.log('Deleted');
-      });
     });
     // Edit Jika Ada
     Article.find().then(data => {
