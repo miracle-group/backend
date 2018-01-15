@@ -3,6 +3,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 const User = require('../models/userModel');
 const Article = require('../models/articleModel');
+const Conjuction = require('../models/conjuctionModel');
 const {userType, userInputType, mongoRespType} = require('./user');
 const {articleType, articleInputType} = require('./article');
 const {createConjuction} = require('../helpers/scrapping');
@@ -104,8 +105,11 @@ const mutation = new GraphQLObjectType({
       },
       resolve : async (root,args) => {
         const {input} = args;
-        const remove = await User.deleteOne({
+        await User.deleteOne({
           _id : ObjectId(input._id)
+        });
+        const remove = await Conjuction.deleteMany({
+          userId : ObjectId(input._id)
         });
         return remove.result;
       }
