@@ -16,4 +16,7 @@ router.get('/category/:category',controlCategory.byCategory);
 // List Articles Based on User Id
 router.get('/article/all/:userid',controlArticle.articleByUser);
 
+// Update Article Status Based on User Id
+router.post('/article/:postId/:status',controlArticle.updateReadStatus);
+
 module.exports = router;

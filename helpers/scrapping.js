@@ -3,7 +3,8 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Article = require('../models/articleModel');
 const Conjuction = require('../models/conjuctionModel');
 
-const createConjuction = (object,io) => {
+const createConjuction = async (object,io) => {
+  // UserId, Times, Preferences
   io.on('connection',(socket) => {
     let totalDuration = 0;
     const {times} = object;
@@ -11,6 +12,7 @@ const createConjuction = (object,io) => {
     const preferences = object.preferences.map(category => {
       return category.replace(/\W+/g,'-');
     });
+    // Edit Jika Ada
     Article.find().then(data => {
       data.forEach(article => {
         article._doc.categories.forEach(category => {
@@ -26,10 +28,11 @@ const createConjuction = (object,io) => {
                     new Conjuction({
                       userId : userId,
                       postId : article._id,
+                      category : userCat,
                       read_status : false
                     }).save().then(response => {
                       Article.findOne({_id : ObjectId(article._id)}).then(article => {
-                        socket.emit('conjuction',{response : article});
+                        socket.emit(`conjuction-${userId}`,{response : article});
                       });
                       console.log(response);
                     });

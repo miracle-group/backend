@@ -85,12 +85,15 @@ module.exports = (socket) => {
             history: input.history ? input.history : user.history,
             preferences: input.preferences ? input.preferences : user.preferences,
           });
+          const deleted = user.preferences.filter(value => {
+            return input.preferences.indexOf(value) == -1;
+          });
           if(input.preferences){
             createConjuction({
-              api : input.api,
               userId : input._id,
               times : input.times,
-              preferences : input.preferences
+              preferences : input.preferences,
+              deleted : deleted
             },socket);
           }
           return update;

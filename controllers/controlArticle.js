@@ -1,3 +1,5 @@
+const ObjectId = require('mongoose').Types.ObjectId;
+
 const Conjuction = require('../models/conjuctionModel');
 
 const articleByUser = (req,res) => {
@@ -10,6 +12,19 @@ const articleByUser = (req,res) => {
   });
 }
 
+const updateReadStatus = (req,res) => {
+  Conjuction.updateOne({
+    _id : ObjectId(req.params.postId)
+  },{
+    read_status : req.params.status
+  }).then(response => {
+    res.send(response);
+  }).catch(err => {
+    console.log(err);
+  });
+}
+
 module.exports = {
-  articleByUser
+  articleByUser,
+  updateReadStatus
 };
