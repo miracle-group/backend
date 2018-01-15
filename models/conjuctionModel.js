@@ -10,6 +10,7 @@ const conjutionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Article'
   },
+  category : String,
   read_status : Boolean
 });
 
