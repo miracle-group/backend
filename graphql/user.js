@@ -12,6 +12,7 @@ const userType = new GraphQLObjectType({
     _id: {type: GraphQLString},
     email: {type: GraphQLString},
     name: {type: GraphQLString},
+    profileImage : {type: GraphQLString},
     preferences: {type: new GraphQLList(GraphQLString)},
     validation: {type: GraphQLString},
     times: {type: GraphQLInt},
@@ -37,6 +38,7 @@ const userInputType = new GraphQLInputObjectType ({
     email: {type: GraphQLString},
     name: {type: GraphQLString},
     times: {type: GraphQLInt},
+    profileImage : {type: GraphQLString},
     preferences: {type: new GraphQLList(GraphQLString)},
     validation: {type: GraphQLString},
     history: {type: new GraphQLList(GraphQLString)}

@@ -18,7 +18,8 @@
     "mongoose": "^4.13.9",
     "morgan": "~1.9.0",
     "parse-rss": "^1.0.3",
-    "reading-time": "^1.1.0"
+    "reading-time": "^1.1.0",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "jest": "^22.0.5",
