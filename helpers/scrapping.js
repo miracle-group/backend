@@ -3,7 +3,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Article = require('../models/articleModel');
 const Conjuction = require('../models/conjuctionModel');
 
-const createConjuction = (object) => {
+const createConjuction = (object,callback) => {
   let totalDuration = 0;
   const {times} = object;
   const {userId} = object;
@@ -27,6 +27,7 @@ const createConjuction = (object) => {
                     postId : article._id,
                     read_status : false
                   }).save().then(response => {
+                    callback(response);
                     console.log(response);
                   });
                 }
