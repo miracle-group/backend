@@ -5,14 +5,24 @@ const Conjuction = require('../models/conjuctionModel');
 
 const createConjuction = async (object,io) => {
   // UserId, Times, Preferences
-  io.on('connection',(socket) => {
-    let totalDuration = 0;
-    const {times} = object;
-    const {userId} = object;
-    const preferences = object.preferences.map(category => {
-      return category.replace(/\W+/g,'-');
+  let totalDuration = 0;
+  const {times} = object;
+  const {userId} = object;
+  const {deleted} = object;
+  const preferences = object.preferences.map(category => {
+    return category.replace(/\W+/g,'-');
+  });
+  // Delete User Preferences if any
+  deleted.forEach(category => {
+    Conjuction.deleteMany({
+      category : category,
+      userId : ObjectId(userId)
+    }).then(response => {
+      console.log('Deleted');
     });
-    // Edit Jika Ada
+  });
+  // Edit Jika Ada
+  io.once('connection',(socket) => {
     Article.find().then(data => {
       data.forEach(article => {
         article._doc.categories.forEach(category => {
@@ -31,10 +41,11 @@ const createConjuction = async (object,io) => {
                       category : userCat,
                       read_status : false
                     }).save().then(response => {
+                      console.log(response);
                       Article.findOne({_id : ObjectId(article._id)}).then(article => {
                         socket.emit(`conjuction-${userId}`,{response : article});
+                        console.log('Emmited');
                       });
-                      console.log(response);
                     });
                   }
                 }).catch(err => {

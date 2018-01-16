@@ -7,7 +7,11 @@ const articleSchema = new Schema({
   thumbnail : String,
   read_time: Number,
   preview : String,
-  content: String
+  content: String,
+  rate : {
+    type : Array,
+    default : 5
+  }
 });
 
 const Article = mongoose.model('Article',articleSchema);

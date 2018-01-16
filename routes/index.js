@@ -19,4 +19,7 @@ router.get('/article/all/:userid',controlArticle.articleByUser);
 // Update Article Status Based on User Id
 router.post('/article/:postId/:status',controlArticle.updateReadStatus);
 
+// Update Article Rating
+router.put('/article/:postId/:rate',controlArticle.updateArticleRate);
+
 module.exports = router;

@@ -89,10 +89,13 @@ module.exports = (socket) => {
             return input.preferences.indexOf(value) == -1;
           });
           if(input.preferences){
+            const preferences = input.preferences.map(category => {
+              return category.name;
+            });
             createConjuction({
               userId : input._id,
               times : input.times,
-              preferences : input.preferences,
+              preferences : preferences,
               deleted : deleted
             },socket);
           }
