@@ -67,13 +67,14 @@ it('Create New Post Should Return Status Code 200',async () => {
     });
   });
 
-  it('Read Article Should Status Code 200',async () => {
+  it('Read Article Should Status Code 200',async (done) => {
     await self.test(JSON.stringify({
       query: `query{article{
         _id title read_time preview content tags
       }}`
     })).then(response => {
       expect(response.status).toBe(200);
+      done()
     }).catch(err => {
       expect(err).toBe(false);
     });
@@ -99,5 +100,40 @@ describe('Update Read Status False', () => {
       expect(res.statusCode).toEqual(200)
       done()
     })
+  });
+})
+
+describe('Update Rating Status Fail', () => {
+  test('Should return 404 if user doesnt exist', (done) => {
+  request(app)
+    .get('/api/article/6b95fc36159d/4')
+    .end((err, res) => {
+      expect(typeof res.body).toEqual('object');
+      expect(res.statusCode).toEqual(404);
+      done();
+    });
+  });
+})
+
+describe('Update Rating Article', () => {
+  test('Rating Articles', (done) => {
+   request(app)
+    .post(`/api/article/6b95fc36159d/4`)
+    .end((err,res) => {
+      expect(res.statusCode).toEqual(200)
+      done()
+    })
+  });
+})
+
+describe('Update Rating Article Fail', () => {
+  test('Should return 404 if user doesnt exist', (done) => {
+  request(app)
+    .get('/api/article/hary/4')
+    .end((err, res) => {
+      expect(typeof res.body).toEqual('object');
+      expect(res.statusCode).toEqual(404);
+      done();
+    });
   });
 })
