@@ -29,6 +29,14 @@ const mongoRespType = new GraphQLObjectType ({
   }
 });
 
+const preferencesType = new GraphQLInputObjectType ({
+  name : 'Preferences',
+  fields : {
+    name : {type : GraphQLString},
+    value : {type : GraphQLInt}
+  }
+});
+
 // Input Type
 const userInputType = new GraphQLInputObjectType ({
   name: 'UserInput',
@@ -39,7 +47,7 @@ const userInputType = new GraphQLInputObjectType ({
     name: {type: GraphQLString},
     times: {type: GraphQLInt},
     profileImage : {type: GraphQLString},
-    preferences: {type: new GraphQLList(GraphQLString)},
+    preferences: {type: new GraphQLList(preferencesType)},
     validation: {type: GraphQLString},
     history: {type: new GraphQLList(GraphQLString)}
   }

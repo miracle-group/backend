@@ -4,7 +4,13 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   email: String,
   name: String,
-  preferences: Array,
+  preferences: [{
+    name : String,
+    value : {
+      type : Number,
+      default : 0
+    }
+  }],
   times: {
     type : Number,
     default : 0

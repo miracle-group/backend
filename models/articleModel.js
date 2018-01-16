@@ -15,8 +15,12 @@ const articleSchema = new Schema({
   title: String,
   tags: Array,
   read_time: Number,
-  isRead: {type: Boolean, default: false }
-
+  preview : String,
+  content: String,
+  rate : {
+    type : Array,
+    default : 5
+  }
 });
 
 const Article = mongoose.model('Article',articleSchema);
