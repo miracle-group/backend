@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.23% </span>
+        <span class="strong">16.13% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/26</span>
+        <span class='fraction'>5/31</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>0/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.23% </span>
+        <span class="strong">16.13% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/26</span>
+        <span class='fraction'>5/31</span>
       </div>
     </div>
   </div>
@@ -99,7 +99,18 @@
 54
 55
 56
-57</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -116,6 +127,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -134,8 +155,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,14 +184,24 @@ const Conjuction = require('../models/conjuctionModel');
 &nbsp;
 const createConjuction = <span class="fstat-no" title="function not covered" >as</span>ync (object,io) =&gt; {
   // UserId, Times, Preferences
-<span class="cstat-no" title="statement not covered" >  io.on('connection',<span class="fstat-no" title="function not covered" >(s</span>ocket) =&gt; {</span>
-    let totalDuration = <span class="cstat-no" title="statement not covered" >0;</span>
-    const {times} = <span class="cstat-no" title="statement not covered" >object;</span>
-    const {userId} = <span class="cstat-no" title="statement not covered" >object;</span>
-    const preferences = <span class="cstat-no" title="statement not covered" >object.preferences.map(<span class="fstat-no" title="function not covered" >ca</span>tegory =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      return category.replace(/\W+/g,'-');</span>
+  let totalDuration = <span class="cstat-no" title="statement not covered" >0;</span>
+  const {times} = <span class="cstat-no" title="statement not covered" >object;</span>
+  const {userId} = <span class="cstat-no" title="statement not covered" >object;</span>
+  const {deleted} = <span class="cstat-no" title="statement not covered" >object;</span>
+  const preferences = <span class="cstat-no" title="statement not covered" >object.preferences.map(<span class="fstat-no" title="function not covered" >ca</span>tegory =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return category.replace(/\W+/g,'-');</span>
+  });
+  // Delete User Preferences if any
+<span class="cstat-no" title="statement not covered" >  deleted.forEach(<span class="fstat-no" title="function not covered" >ca</span>tegory =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    Conjuction.deleteMany({</span>
+      category : category,
+      userId : ObjectId(userId)
+    }).then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('Deleted');</span>
     });
-    // Edit Jika Ada
+  });
+  // Edit Jika Ada
+<span class="cstat-no" title="statement not covered" >  io.once('connection',<span class="fstat-no" title="function not covered" >(s</span>ocket) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    Article.find().then(<span class="fstat-no" title="function not covered" >da</span>ta =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      data.forEach(<span class="fstat-no" title="function not covered" >ar</span>ticle =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        article._doc.categories.forEach(<span class="fstat-no" title="function not covered" >ca</span>tegory =&gt; {</span>
@@ -188,10 +220,11 @@ const createConjuction = <span class="fstat-no" title="function not covered" >as
                       category : userCat,
                       read_status : false
                     }).save().then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >                      console.log(response);</span>
 <span class="cstat-no" title="statement not covered" >                      Article.findOne({_id : ObjectId(article._id)}).then(<span class="fstat-no" title="function not covered" >ar</span>ticle =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >                        socket.emit(`conjuction-${userId}`,{response : article});</span>
+<span class="cstat-no" title="statement not covered" >                        console.log('Emmited');</span>
                       });
-<span class="cstat-no" title="statement not covered" >                      console.log(response);</span>
                     });
                   }
                 }).catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; {
@@ -217,7 +250,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 16 2018 11:39:38 GMT+0700 (WIB)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 16 2018 14:12:03 GMT+0700 (WIB)
 </div>
 </div>
 <script src="../../prettify.js"></script>
