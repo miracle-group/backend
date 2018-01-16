@@ -13,7 +13,7 @@ const {GraphQLSchema} = require('graphql');
 
 const {query, mutation} = require('./graphql')(socket);
 
-mongoose.connect('mongodb://hary:hary@cluster0-shard-00-00-dvvn1.mongodb.net:27017,cluster0-shard-00-01-dvvn1.mongodb.net:27017,cluster0-shard-00-02-dvvn1.mongodb.net:27017/repod?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin',{
+mongoose.connect('mongodb://35.198.201.189:27017/repod',{
   useMongoClient : true
 });
 

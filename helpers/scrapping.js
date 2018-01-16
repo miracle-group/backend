@@ -42,7 +42,9 @@ const createConjuction = async (object,io) => {
                       read_status : false
                     }).save().then(response => {
                       console.log(response);
-                      Article.findOne({_id : ObjectId(article._id)}).then(article => {
+                      Conjuction.findOne({
+                        _id : ObjectId(response._id)
+                      }).populate('postId').then(article => {
                         socket.emit(`conjuction-${userId}`,{response : article});
                         console.log('Emmited');
                       });
