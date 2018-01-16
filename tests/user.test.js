@@ -149,5 +149,4 @@ describe('Test Users',() => {
       expect(response.data.userAdd.times).toBe(0)
     })
   })
-
 });
