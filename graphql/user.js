@@ -12,6 +12,7 @@ const userType = new GraphQLObjectType({
     _id: {type: GraphQLString},
     email: {type: GraphQLString},
     name: {type: GraphQLString},
+    profileImage : {type: GraphQLString},
     preferences: {type: new GraphQLList(GraphQLString)},
     validation: {type: GraphQLString},
     times: {type: GraphQLInt},
@@ -32,10 +33,12 @@ const mongoRespType = new GraphQLObjectType ({
 const userInputType = new GraphQLInputObjectType ({
   name: 'UserInput',
   fields: {
+    api: {type: GraphQLString},
     _id: {type: GraphQLString},
     email: {type: GraphQLString},
     name: {type: GraphQLString},
     times: {type: GraphQLInt},
+    profileImage : {type: GraphQLString},
     preferences: {type: new GraphQLList(GraphQLString)},
     validation: {type: GraphQLString},
     history: {type: new GraphQLList(GraphQLString)}

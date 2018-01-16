@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for backend/controllers/controlCategory.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">backend/controllers</a> controlCategory.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>45/45</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>9/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>45/45</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const request = require('request');
+const cheerio = require('cheerio');
+&nbsp;
+const allCategory = (req,res) =&gt; {
+  request('https://medium.com/topics',(error,response,html) =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if(!error &amp;&amp; response.statusCode == 200){
+      const $ = cheerio.load(html);
+      let preferences = [];
+      $('.link.link--noUnderline.u-baseColor--link.u-flex1.u-uiDisplayBold.u-fontSize20').each((i, element) =&gt; {
+        const topic_url = element.attribs.href;
+        const topic_name = element.children[0].data;
+        var metadata = {
+          url : topic_url,
+          name : topic_name
+        };
+        preferences.push(metadata);
+      });
+      res.send(preferences);
+    }
+  });
+}
+&nbsp;
+const byCategory = (req,res) =&gt; {
+  request('https://medium.com/topic/technology',(error, response, html) =&gt; {
+    let metadatas = [];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if(!error &amp;&amp; response.statusCode == 200){
+      let result = [];
+      const $ = cheerio.load(html);
+      $('.u-block.u-backgroundSizeCover.u-backgroundOriginBorderBox').each((i, element) =&gt; {
+        let temp = element.attribs.style
+        let split = temp.split(';').slice(0,1).join('')
+        let spasi = split.split(' ').join('')
+        let spasi2 = spasi.split(':').pop().substr(2, spasi.split(':').pop().length-4)
+        let url = element.attribs.href
+        let label = element.attribs['aria-label']
+        let gambar = spasi2
+        let metadata = {
+          id: i+1,
+          url : url,
+          photo: gambar,
+          title: label
+        }
+        metadatas.push(metadata);
+      });
+      $('.u-flex0.u-sizeFullWidth').each((j, content) =&gt; {
+        let description = String(content.next.children[0].children[0].data)
+        if(metadatas[j]){
+          metadatas[j]['description'] = description
+        }
+      });
+      $('.u-flex1.u-noWrapWithEllipsis').each(function(k, content){
+        let times = content.children[0].children[0].parent.next.children[0].next.next.attribs.title
+        let hasil = times.split(' ').shift();
+        let number = Number(hasil);
+        if(metadatas[k]) {
+          metadatas[k]['times'] = number
+        }
+      });
+      $('.u-borderBox.u-flexColumn.uiScale.uiScale-ui--small.uiScale-caption--small').each((m, content) =&gt; {
+        let postId = content.parent.parent.attribs['data-post-id']
+        if(metadatas[m]) {
+          metadatas[m]['postID'] = postId
+        }
+      });
+      res.send(metadatas);
+    }
+  });
+}
+&nbsp;
+module.exports = {
+  allCategory,
+  byCategory
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 16 2018 11:39:38 GMT+0700 (WIB)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

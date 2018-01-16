@@ -1,5 +1,6 @@
 const {tester} = require('graphql-tester');
 const request = require('supertest');
+const app = require('../app');
 
 let userId = '';
 
@@ -7,7 +8,7 @@ describe('Test Users',() => {
   const self = this;
   beforeAll(() => {
     self.test = tester({
-      url: 'http://localhost:3001/graphql', contentType: 'application/json'
+      url: 'http://repod.ga:8000/graphql', contentType: 'application/json'
     });
   });
   // Create User
@@ -79,7 +80,7 @@ describe('Test Users',() => {
     });
   });
   // Delete User
-  it('Create New User Should Return Status OK',async () => {
+  it('Delete New User Should Return Status OK',async () => {
     await self.test(JSON.stringify({
       query: `mutation{deleteUser(input:{
         _id : "${userId}"
@@ -92,4 +93,60 @@ describe('Test Users',() => {
       expect(err).toBe(null);
     });
   });
+  // Type Data Users
+  it('Validation Register Name',async () => {
+    await self.test(JSON.stringify({
+      query: `mutation{userAdd(input:{
+        email : "yono@gmail.com",
+        name : "yono",
+        validation : "HASGDAY231623GASDSA"
+      }){
+        _id email name validation times preferences history
+      }}`
+    })).then(response => {
+      expect(response.data.userAdd.name).toBe('yono')
+    })
+  })
+  // validation email
+  it('Check Validation Register Email',async () => {
+    await self.test(JSON.stringify({
+      query: `mutation{userAdd(input:{
+        email : "yono@gmail.com",
+        name : "yono",
+        validation : "HASGDAY231623GASDSA"
+      }){
+        _id email name validation times preferences history
+      }}`
+    })).then(response => {
+      expect(response.data.userAdd.email).toBe('yono@gmail.com')
+    })
+  })
+
+  it('Check Validation Token',async () => {
+    await self.test(JSON.stringify({
+      query: `mutation{userAdd(input:{
+        email : "yono@gmail.com",
+        name : "yono",
+        validation : "HASGDAY231623GASDSA"
+      }){
+        _id email name validation times preferences history
+      }}`
+    })).then(response => {
+      expect(response.data.userAdd.validation).toBe('HASGDAY231623GASDSA')
+    })
+  })
+
+  it('Check Default Times Register',async () => {
+    await self.test(JSON.stringify({
+      query: `mutation{userAdd(input:{
+        email : "yono@gmail.com",
+        name : "yono",
+        validation : "HASGDAY231623GASDSA"
+      }){
+        _id email name validation times preferences history
+      }}`
+    })).then(response => {
+      expect(response.data.userAdd.times).toBe(0)
+    })
+  })
 });

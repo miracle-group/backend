@@ -2,14 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const conjutionSchema = new Schema({
-  userId : [{
+  userId : {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }],
-  postId : [{
+  },
+  postId : {
     type: Schema.Types.ObjectId,
     ref: 'Article'
-  }],
+  },
+  category : String,
   read_status : Boolean
 });
 

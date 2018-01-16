@@ -13,8 +13,7 @@ const articleSchema = new Schema({
   createdAt: {type: Date, default: Date.now },
   author: String,
   title: String,
-  content: String,
-  categories: [{type: String}],
+  tags: Array,
   read_time: Number,
   isRead: {type: Boolean, default: false }
 

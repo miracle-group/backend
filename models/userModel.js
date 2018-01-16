@@ -9,6 +9,7 @@ const userSchema = new Schema({
     type : Number,
     default : 0
   },
+  profileImage : String,
   validation : String,
   history: Array,
   createdAt: {
