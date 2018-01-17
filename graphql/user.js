@@ -6,6 +6,14 @@ const {
   GraphQLInputObjectType
 } = require('graphql');
 
+const outputUserPreferencesType = new GraphQLObjectType({
+  name : 'OutputPreferences',
+  fields : {
+    name : {type : GraphQLString},
+    value : {type : GraphQLInt}
+  }
+})
+
 const userType = new GraphQLObjectType({
   name: 'Users',
   fields: {
@@ -13,7 +21,7 @@ const userType = new GraphQLObjectType({
     email: {type: GraphQLString},
     name: {type: GraphQLString},
     profileImage : {type: GraphQLString},
-    preferences: {type: new GraphQLList(GraphQLString)},
+    preferences: {type: new GraphQLList(outputUserPreferencesType)},
     validation: {type: GraphQLString},
     times: {type: GraphQLInt},
     history: {type: new GraphQLList(GraphQLString)}
@@ -29,6 +37,7 @@ const mongoRespType = new GraphQLObjectType ({
   }
 });
 
+// Input Type
 const preferencesType = new GraphQLInputObjectType ({
   name : 'Preferences',
   fields : {
@@ -37,7 +46,6 @@ const preferencesType = new GraphQLInputObjectType ({
   }
 });
 
-// Input Type
 const userInputType = new GraphQLInputObjectType ({
   name: 'UserInput',
   fields: {
