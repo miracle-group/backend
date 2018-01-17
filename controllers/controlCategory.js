@@ -1,5 +1,8 @@
-const request = require('request')
-const cheerio = require('cheerio')
+const ObjectId = require('mongoose').Types.ObjectId;
+const request = require('request');
+const cheerio = require('cheerio');
+
+const User = require('../models/userModel');
 
 const allCategory = (req,res) => {
   request('https://medium.com/topics',(error,response,html) => {
@@ -67,7 +70,33 @@ const byCategory = (req,res) => {
   })
 }
 
+const updateUserCategoryRate = (req,res) => {
+  User.findOne({
+    _id : ObjectId(req.params.userid)
+  }).then(user => {
+    const {preferences} = user;
+    const newPreferences = preferences.map(category => {
+      category.value += 1;
+      return category;
+    });
+    User.updateOne({
+      _id : ObjectId(req.params.userid)
+    },{
+      preferences : newPreferences
+    }).then(response => {
+      User.findOne({
+        _id : ObjectId(req.params.userid)
+      }).then(updatedUser => {
+        res.send(updatedUser.preferences);
+      });
+    });
+  }).catch(err => {
+    console.log(err);
+  });
+}
+
 module.exports = {
   allCategory,
-  byCategory
-}
+  byCategory,
+  updateUserCategoryRate
+};

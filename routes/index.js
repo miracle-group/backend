@@ -22,4 +22,7 @@ router.post('/article/:postId/:status',controlArticle.updateReadStatus);
 // Update Article Rating
 router.put('/article/:postId/:rate',controlArticle.updateArticleRate);
 
+// Update User Categories
+router.put('/category/user/:userid',controlCategory.updateUserCategoryRate);
+
 module.exports = router;

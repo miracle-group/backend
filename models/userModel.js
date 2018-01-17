@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const preferences = new Schema({
+  name : String,
+  value : Number
+},{_id : false})
+
 const userSchema = new Schema({
   email: String,
   name: String,
-  preferences: [{
-    name : String,
-    value : {
-      type : Number,
-      default : 0
-    }
-  }],
+  preferences: [preferences],
   times: {
     type : Number,
     default : 0

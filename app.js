@@ -13,14 +13,14 @@ const {GraphQLSchema} = require('graphql');
 
 const {query, mutation} = require('./graphql')(socket);
 
-mongoose.connect('mongodb://hary:hary@cluster0-shard-00-00-dvvn1.mongodb.net:27017,cluster0-shard-00-01-dvvn1.mongodb.net:27017,cluster0-shard-00-02-dvvn1.mongodb.net:27017/repod?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin',{
+mongoose.connect('mongodb://35.198.201.189:27017/repod',{
   useMongoClient : true
 });
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cors());
 app.io = socket;
 
 const appSchema = new GraphQLSchema({
@@ -60,7 +60,6 @@ app.use(function(err, req, res, next) {
   // console.log(err);
   res.status(err.status || 500)
   res.send(err)
-})
-
+});
 
 module.exports = app
