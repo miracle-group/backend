@@ -3,6 +3,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 const User = require('../models/userModel');
+const Conjuction = require('../models/conjuctionModel');
 
 const allCategory = (req,res) => {
   request('https://medium.com/topics',(error,response,html) => {
@@ -74,22 +75,26 @@ const updateUserCategoryRate = (req,res) => {
   User.findOne({
     _id : ObjectId(req.params.userid)
   }).then(user => {
-    const {preferences} = user;
-    const newPreferences = preferences.map(category => {
-      if(category.name === req.params.category){
-        category.value += 1;
-      }
-      return category;
-    });
-    User.updateOne({
-      _id : ObjectId(req.params.userid)
-    },{
-      preferences : newPreferences
-    }).then(response => {
-      User.findOne({
+    Conjuction.findOne({
+      _id : ObjectId(req.params.postId)
+    }).then(({category}) => {
+      const {preferences} = user;
+      const newPreferences = preferences.map(prefCategory => {
+        if(prefCategory.name === category){
+          prefCategory.value += 1;
+        }
+        return prefCategory;
+      });
+      User.updateOne({
         _id : ObjectId(req.params.userid)
-      }).then(updatedUser => {
-        res.send(updatedUser.preferences);
+      },{
+        preferences : newPreferences
+      }).then(response => {
+        User.findOne({
+          _id : ObjectId(req.params.userid)
+        }).then(updatedUser => {
+          res.send(updatedUser.preferences);
+        });
       });
     });
   }).catch(err => {

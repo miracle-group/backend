@@ -23,6 +23,6 @@ router.post('/article/:postId/:status',controlArticle.updateReadStatus);
 router.put('/article/:postId/:rate',controlArticle.updateArticleRate);
 
 // Update User Categories
-router.put('/category/user/:userid/:category',controlCategory.updateUserCategoryRate);
+router.put('/category/user/:userid/:postId',controlCategory.updateUserCategoryRate);
 
 module.exports = router;
