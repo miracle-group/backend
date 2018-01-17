@@ -94,13 +94,13 @@ module.exports = (socket) => {
           const userPreferences = user.preferences.map(category => {
             return category.name;
           });
-          const inputPreferences = input.preferences.map(category => {
-            return category.name;
-          });
           const deleted = userPreferences.filter(value => {
             return inputPreferences.indexOf(value) == -1;
           });
-          if(input.preferences){
+          if(input.preferences && input.preferences.length > 0){
+            const inputPreferences = input.preferences.map(category => {
+              return category.name;
+            });
             createConjuction({
               userId : input._id,
               times : input.times,

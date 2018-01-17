@@ -8,20 +8,20 @@ describe('Test Users',() => {
   const self = this;
   beforeAll(() => {
     self.test = tester({
-      url: 'http://repod.ga:8000/graphql', contentType: 'application/json'
+      url: 'https://repod.ga/graphql', contentType: 'application/json'
     });
   });
   // Create User
   it('Create New User Should Return Status Code 200',async () => {
     await self.test(JSON.stringify({
       query: `mutation{userAdd(input:{
-        email : "yono@gmail.com",
-        name : "yono",
-        validation : "HASGDAY231623GASDSA"
+        email : "tomy@gmail.com",
+        name : "tomy"
       }){
-        _id email name validation times preferences history
+        _id email name validation times preferences{name value} history
       }}`
     })).then(response => {
+      console.log(response.data.userAdd._id);
       userId = response.data.userAdd._id;
       expect(response.status).toBe(200);
     }).catch(err => {
@@ -32,7 +32,7 @@ describe('Test Users',() => {
   it('Read Users Should Return Status Code 200',async () => {
     await self.test(JSON.stringify({
       query: `query{users {
-        _id email name validation times history preferences
+        _id email name validation times history preferences{name value}
       }}`
     })).then(response => {
       expect(response.status).toBe(200);
@@ -43,7 +43,7 @@ describe('Test Users',() => {
   it('Read Users Should Return Array',async () => {
     await self.test(JSON.stringify({
       query: `query{users{
-        _id email name validation times history preferences
+        _id email name validation times history preferences{name value}
       }}`
     })).then(response => {
       expect(Array.isArray(response.data.users)).toBe(true);
@@ -101,7 +101,7 @@ describe('Test Users',() => {
         name : "yono",
         validation : "HASGDAY231623GASDSA"
       }){
-        _id email name validation times preferences history
+        _id email name validation times preferences{name value} history
       }}`
     })).then(response => {
       expect(response.data.userAdd.name).toBe('yono')
@@ -115,7 +115,7 @@ describe('Test Users',() => {
         name : "yono",
         validation : "HASGDAY231623GASDSA"
       }){
-        _id email name validation times preferences history
+        _id email name validation times preferences{name value} history
       }}`
     })).then(response => {
       expect(response.data.userAdd.email).toBe('yono@gmail.com')
@@ -129,7 +129,7 @@ describe('Test Users',() => {
         name : "yono",
         validation : "HASGDAY231623GASDSA"
       }){
-        _id email name validation times preferences history
+        _id email name validation times preferences{name value} history
       }}`
     })).then(response => {
       expect(response.data.userAdd.validation).toBe('HASGDAY231623GASDSA')
@@ -140,10 +140,9 @@ describe('Test Users',() => {
     await self.test(JSON.stringify({
       query: `mutation{userAdd(input:{
         email : "yono@gmail.com",
-        name : "yono",
-        validation : "HASGDAY231623GASDSA"
+        name : "yono"
       }){
-        _id email name validation times preferences history
+        _id email name validation times preferences{name value} history
       }}`
     })).then(response => {
       expect(response.data.userAdd.times).toBe(0)

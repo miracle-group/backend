@@ -27,28 +27,15 @@ describe('GET /api/category/all', () => {
     });
 });
 
-describe('GET /api/category/:category', () => {
-  test('Should return 200 if successful', (done) => {
+describe('GET /api/category/all', () => {
+  test('Should return 404 if not successful', (done) => {
     request(app)
-      .get(`/api/category/:category`)
+      .get(`/apis/category/all`)
       .end((err, res) => {
         if (err) throw err;
-        expect(typeof res.body).toEqual('object');
-        expect(res.statusCode).toEqual(200);
+        // expect(typeof res.body).toEqual('object');
+        expect(res.statusCode).toEqual(404);
         done();
       });
     });
-})
-
-describe('GET /api/category/:category', () => {
-  test('Should return 200 if successful', (done) => {
-    request(app)
-      .get(`/api/category/:category`)
-      .end((err, res) => {
-        if (err) throw err;
-        expect(typeof res.body).toEqual('object');
-        expect(res.statusCode).toEqual(200);
-        done();
-      });
-    });
-})
+});
