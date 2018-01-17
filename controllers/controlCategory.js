@@ -76,7 +76,9 @@ const updateUserCategoryRate = (req,res) => {
   }).then(user => {
     const {preferences} = user;
     const newPreferences = preferences.map(category => {
-      category.value += 1;
+      if(category.name === req.params.category){
+        category.value += 1;
+      }
       return category;
     });
     User.updateOne({
