@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for backend/graphql/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">backend/graphql</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.43% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const {GraphQLObjectType, GraphQLList, GraphQLSchema} = require('graphql');
+const ObjectId = require('mongoose').Types.ObjectId;
+&nbsp;
+const User = require('../models/userModel');
+const Article = require('../models/articleModel');
+const Conjuction = require('../models/conjuctionModel');
+const {userType, userInputType, mongoRespType} = require('./user');
+const {articleType, articleInputType} = require('./article');
+const {createConjuction} = require('../helpers/scrapping');
+&nbsp;
+module.exports = (socket) =&gt; {
+  const query = new GraphQLObjectType({
+    name : 'Query',
+    fields : {
+      users : {
+        type : new GraphQLList(userType),
+        resolve : <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
+<span class="cstat-no" title="statement not covered" >          return await User.find();</span>
+        }
+      },
+      user : {
+        type : userType,
+        args : {
+          input: {
+            name : 'userInput',
+            type : userInputType
+          }
+        },
+        resolve : <span class="fstat-no" title="function not covered" >as</span>ync (root,args) =&gt; {
+<span class="cstat-no" title="statement not covered" >          return await User.findOne({</span>
+            _id : args.input._id
+          });
+        }
+      },
+      article : {
+        type : new GraphQLList(articleType),
+        resolve : <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
+<span class="cstat-no" title="statement not covered" >          return await Article.find();</span>
+        }
+      }
+    }
+  });
+&nbsp;
+  const mutation = new GraphQLObjectType({
+    name : 'Mutation',
+    fields : {
+      userAdd : {
+        type : userType,
+        args : {
+          input: {
+            name : 'userInput',
+            type : userInputType
+          }
+        },
+        resolve: <span class="fstat-no" title="function not covered" >as</span>ync (root,args) =&gt; {
+          const {input} = <span class="cstat-no" title="statement not covered" >args;</span>
+          const checkUser = <span class="cstat-no" title="statement not covered" >await User.findOne({</span>
+            validation : input.validation
+          });
+<span class="cstat-no" title="statement not covered" >          if(!checkUser){</span>
+<span class="cstat-no" title="statement not covered" >            await User.create(input);</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return await User.findOne({</span>
+            validation : input.validation
+          });
+        }
+      },
+      updateUser : {
+        type : mongoRespType,
+        args : {
+          input : {
+            name : 'userInput',
+            type : userInputType
+          }
+        },
+        resolve : <span class="fstat-no" title="function not covered" >as</span>ync (root,args) =&gt; {
+          const {input} = <span class="cstat-no" title="statement not covered" >args;</span>
+          const user = <span class="cstat-no" title="statement not covered" >await User.findOne({_id : ObjectId(input._id)});</span>
+          const update = <span class="cstat-no" title="statement not covered" >await User.updateOne({</span>
+            _id : ObjectId(input._id)
+          },{
+            name: input.name ? input.name : user.name,
+            email: input.email ? input.email : user.email,
+            times: input.times ? input.times : user.times,
+            history: input.history ? input.history : user.history,
+            preferences: input.preferences ? input.preferences : user.preferences,
+          });
+          const deleted = <span class="cstat-no" title="statement not covered" >user.preferences.filter(<span class="fstat-no" title="function not covered" >va</span>lue =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            return input.preferences.indexOf(value) == -1;</span>
+          });
+<span class="cstat-no" title="statement not covered" >          if(input.preferences){</span>
+            const preferences = <span class="cstat-no" title="statement not covered" >input.preferences.map(<span class="fstat-no" title="function not covered" >ca</span>tegory =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >              return category.name;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            createConjuction({</span>
+              userId : input._id,
+              times : input.times,
+              preferences : preferences,
+              deleted : deleted
+            },socket);
+          }
+<span class="cstat-no" title="statement not covered" >          return update;</span>
+        }
+      },
+      deleteUser : {
+        type : mongoRespType,
+        args : {
+          input : {
+            name : 'userInput',
+            type : userInputType
+          }
+        },
+        resolve : <span class="fstat-no" title="function not covered" >as</span>ync (root,args) =&gt; {
+          const {input} = <span class="cstat-no" title="statement not covered" >args;</span>
+<span class="cstat-no" title="statement not covered" >          await User.deleteOne({</span>
+            _id : ObjectId(input._id)
+          });
+          const remove = <span class="cstat-no" title="statement not covered" >await Conjuction.deleteMany({</span>
+            userId : ObjectId(input._id)
+          });
+<span class="cstat-no" title="statement not covered" >          return remove.result;</span>
+        }
+      },
+      addArticle : {
+        type : new GraphQLList(articleType),
+        args : {
+          input : {
+            name : 'userInput',
+            type : articleInputType
+          }
+        },
+        resolve : <span class="fstat-no" title="function not covered" >as</span>ync (root,args) =&gt; {
+          const {input} = <span class="cstat-no" title="statement not covered" >args;</span>
+<span class="cstat-no" title="statement not covered" >          await Article.create(input);</span>
+<span class="cstat-no" title="statement not covered" >          return await Article.find()</span>
+        }
+      }
+    }
+  });
+  // Return
+  return{
+    query,
+    mutation
+  }
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 16 2018 14:12:03 GMT+0700 (WIB)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
