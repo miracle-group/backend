@@ -31,7 +31,7 @@ const byCategory = (req,res) => {
       const $ = cheerio.load(html)
       $('.u-block.u-backgroundSizeCover.u-backgroundOriginBorderBox').each((i, element) => {
         let temp = element.attribs.style
-        let split = temp.split('').slice(0,1).join('')
+        let split = temp.split(';').slice(0,1).join('')
         let spasi = split.split(' ').join('')
         let spasi2 = spasi.split(':').pop().substr(2, spasi.split(':').pop().length-4)
         let url = element.attribs.href
@@ -65,7 +65,8 @@ const byCategory = (req,res) => {
           metadatas[m]['postID'] = postId
         }
       })
-      res.send(metadatas)
+      console.log(metadatas);
+      // res.send(metadatas)
     }
   })
 }

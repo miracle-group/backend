@@ -4,6 +4,8 @@ const app = require('../app');
 const Conjuction = require('../controllers/controlArticle');
 
 
+
+
 describe('GET /api/category/all', () => {
   test('Should return 200 if successful', (done) => {
     request(app)
@@ -20,7 +22,7 @@ describe('GET /api/category/all', () => {
 describe('GET /api/category/:category', () => {
   test('Should return 200 if successful', (done) => {
     request(app)
-      .get(`/api/category/:category`)
+      .get(`/api/category/art`)
       .end((err, res) => {
         if (err) throw err;
         expect(typeof res.body).toEqual('object');

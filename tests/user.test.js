@@ -7,8 +7,9 @@ let userId = '';
 describe('Test Users',() => {
   const self = this;
   beforeAll(() => {
+    // https://repod.ga/graphql
     self.test = tester({
-      url: 'http://repod.ga:8000/graphql', contentType: 'application/json'
+      url: 'http://localhost:3001/graphql', contentType: 'application/json'
     });
   });
   // Create User
@@ -19,7 +20,7 @@ describe('Test Users',() => {
         name : "yono",
         validation : "HASGDAY231623GASDSA"
       }){
-        _id email name validation times preferences history
+        _id email name validation
       }}`
     })).then(response => {
       userId = response.data.userAdd._id;
