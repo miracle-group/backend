@@ -17,10 +17,10 @@ mongoose.connect('mongodb://35.198.201.189:27017/repod',{
   useMongoClient : true
 });
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cors());
 app.io = socket;
 
 const appSchema = new GraphQLSchema({
@@ -60,7 +60,6 @@ app.use(function(err, req, res, next) {
   console.log(err);
   res.status(err.status || 500)
   res.send(err)
-})
-
+});
 
 module.exports = app

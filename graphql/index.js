@@ -8,7 +8,13 @@ const {userType, userInputType, mongoRespType} = require('./user');
 const {articleType, articleInputType} = require('./article');
 const {createConjuction} = require('../helpers/scrapping');
 
+let counter = 0;
+
 module.exports = (socket) => {
+  socket.on('connection',(io) => {
+    socket.io=io;
+    socket.clientId=io.id
+  });
   const query = new GraphQLObjectType({
     name : 'Query',
     fields : {
@@ -85,17 +91,20 @@ module.exports = (socket) => {
             history: input.history ? input.history : user.history,
             preferences: input.preferences ? input.preferences : user.preferences,
           });
-          const deleted = user.preferences.filter(value => {
-            return input.preferences.indexOf(value) == -1;
+          const userPreferences = user.preferences.map(category => {
+            return category.name;
+          });
+          const inputPreferences = input.preferences.map(category => {
+            return category.name;
+          });
+          const deleted = userPreferences.filter(value => {
+            return inputPreferences.indexOf(value) == -1;
           });
           if(input.preferences){
-            const preferences = input.preferences.map(category => {
-              return category.name;
-            });
             createConjuction({
               userId : input._id,
               times : input.times,
-              preferences : preferences,
+              preferences : inputPreferences,
               deleted : deleted
             },socket);
           }
@@ -137,7 +146,6 @@ module.exports = (socket) => {
       }
     }
   });
-  // Return
   return{
     query,
     mutation
