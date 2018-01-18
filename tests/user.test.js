@@ -9,15 +9,15 @@ describe('Test Users',() => {
   beforeAll(() => {
     // https://repod.ga/graphql
     self.test = tester({
-      url: 'http://localhost:3001/graphql', contentType: 'application/json'
+      url: 'https://repod.ga/graphql', contentType: 'application/json'
     });
   });
   // Create User
   it('Create New User Should Return Status Code 200',async () => {
     await self.test(JSON.stringify({
       query: `mutation{userAdd(input:{
-        email : "yono@gmail.com",
-        name : "yono",
+        email : "bani@gmail.com",
+        name : "bani",
         validation : "HASGDAY231623GASDSA"
       }){
         _id email name validation
